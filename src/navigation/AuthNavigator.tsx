@@ -1,13 +1,21 @@
 // src/navigation/AppNavigator.tsx
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Auth from '../screens/Auth/Auth'
 
-const Auth = createNativeStackNavigator()
+const Stack = createNativeStackNavigator()
 
 export default function AuthNavigator() {
   return (
-    <Auth.Navigator>
-        <></>
-    </Auth.Navigator>
+    <Stack.Navigator
+      initialRouteName='Auth'
+    >
+      <Stack.Screen
+        name='Auth'
+        component={Auth}
+      />
+
+
+    </Stack.Navigator>
   )
 }

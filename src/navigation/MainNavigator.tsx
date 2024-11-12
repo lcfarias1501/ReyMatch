@@ -1,13 +1,14 @@
-// src/navigation/MainNavigator.tsx
 import React, { useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as SecureStore from 'expo-secure-store'
 import LoadingScreen from '../components/app/LoadingScreen'
 import AppNavigator from './AppNavigator'
 import AuthNavigator from './AuthNavigator'
 
+const Main = createNativeStackNavigator()
+
 export default function MainNavigator() {
-    
+
     const [userId, setUserId] = useState<string | null>(null)
     const [isLoading, setIsLoading] = useState(true)
 
@@ -33,8 +34,20 @@ export default function MainNavigator() {
     }
 
     return (
-        <NavigationContainer>
-            {userId ? <AppNavigator /> : <AuthNavigator />}
-        </NavigationContainer>
+        <Main.Navigator
+            initialRouteName={userId ? 'AppNav' : 'AuthNav'}
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Main.Screen
+                name='AuthNav'
+                component={AuthNavigator}
+            />
+            <Main.Screen
+                name='AppNav'
+                component={AppNavigator}
+            />
+        </Main.Navigator>
     )
 }
