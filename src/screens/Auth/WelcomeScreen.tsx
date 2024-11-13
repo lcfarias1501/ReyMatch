@@ -6,38 +6,34 @@ import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 
 export default function WelcomeScreen() {
-
     const navigation = useNavigation<any>()
-
     const { t, i18n } = useTranslation()
 
-    async function startWithApp() {
-        try {
-            // Store that the user has entered the app
-            await SecureStore.setItemAsync('enteredApp', 'true')
-            // Navigate to the AppNavigator
-            navigation.navigate('AppNav')
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    function change() {
-        i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es')
+    const change = async () => {
+        const newLanguage = i18n.language === 'en' ? 'pt' : 'en';
+        console.log(newLanguage)
+        i18n.changeLanguage(newLanguage);
     }
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',}}>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', }}>
             <Text></Text>
 
-            <TouchableOpacity onPress={change}>
-                <Text>{t('welcome')}</Text>
+            <TouchableOpacity
+                onPress={change}
+                style={styles.button}
+            >
+                <Text>{t('Welcome')}</Text>
             </TouchableOpacity>
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-
+    button: {
+        borderRadius: 10,
+        backgroundColor: 'red',
+        padding: 10,
+        marginHorizontal: 10,
+    }
 })

@@ -1,54 +1,24 @@
-import i18next, { ModuleType } from 'i18next'
+import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { resources } from './translations'
 
-// Type for supported languages
-export type Language = keyof typeof resources
 
-// Create a custom type for our async language detector
-interface CustomLanguageDetector {
-    type: ModuleType
-    async: boolean
-    detect: () => Promise<string>
-    init: () => void
-    cacheUserLanguage: (language: string) => Promise<void>
-}
+import * as en from './translations/en.json'
+import * as pt from './translations/pt.json'
 
-const LANGUAGE_DETECTOR: CustomLanguageDetector = {
-    type: 'languageDetector',
-    async: true,
-    detect: async () => {
-        try {
-            const language = await AsyncStorage.getItem('language')
-            return language || 'en'
-        } catch {
-            return 'en'
-        }
-    },
-    init: () => { },
-    cacheUserLanguage: async (language: string) => {
-        try {
-            await AsyncStorage.setItem('language', language)
-        } catch (error) {
-            console.error('Error caching language:', error)
-        }
-    },
-}
-
-i18next
-    .use(LANGUAGE_DETECTOR)
+i18n
     .use(initReactI18next)
     .init({
-        resources,
-        fallbackLng: 'en',
-        debug: __DEV__,
+        compatibilityJSON: 'v3',
+        resources: {
+            en: en,
+            pt: pt
+        },
+        lng: 'en', // default language
+        fallbackLng: 'en', // fallback language
         interpolation: {
-            escapeValue: false,
+            escapeValue: false // react already safes from xss
         },
-        react: {
-            useSuspense: false,
-        },
+
     })
 
-export default i18next
+export default i18n
