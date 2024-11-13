@@ -4,22 +4,34 @@ import * as SecureStore from 'expo-secure-store'
 import LoadingScreen from '../components/app/LoadingScreen'
 import AppNavigator from './AppNavigator'
 import AuthNavigator from './AuthNavigator'
+import WelcomeScreen from '../screens/Auth/WelcomeScreen'
 
 const Main = createNativeStackNavigator()
 
 export default function MainNavigator() {
 
-    const [userId, setUserId] = useState<string | null>(null)
+    const [page, setPage] = useState<string>('')
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         const checkUserAuth = async () => {
             try {
+                // User has already enter the app?
+                const enteredApp = await SecureStore.getItemAsync('enteredApp')
+                if(!enteredApp){
+                    setPage('Welcome')
+                    return
+                }
                 // Attempt to get the user ID from SecureStore
                 const storedUserId = await SecureStore.getItemAsync('userId')
-                setUserId(storedUserId)
+                if (storedUserId) {
+                    setPage('AppNav')
+                    return 
+                }
+                // If the user has already entered the app and it not logged in
+                setPage('AuthNav')
             } catch (error) {
-                console.error('Failed to fetch user ID:', error)
+                console.error(error)
             } finally {
                 // Stop the loading state once user ID is checked
                 setIsLoading(false)
@@ -35,7 +47,7 @@ export default function MainNavigator() {
 
     return (
         <Main.Navigator
-            initialRouteName={userId ? 'AppNav' : 'AuthNav'}
+            initialRouteName={page}
             screenOptions={{
                 headerShown: false,
             }}
@@ -43,11 +55,24 @@ export default function MainNavigator() {
             <Main.Screen
                 name='AuthNav'
                 component={AuthNavigator}
+                options={{
+                    gestureEnabled: false, 
+                }}
             />
+
             <Main.Screen
                 name='AppNav'
                 component={AppNavigator}
+                options={{
+                    gestureEnabled: false, 
+                }}
             />
+
+            <Main.Screen
+                name='Welcome'
+                component={WelcomeScreen}
+            />
+
         </Main.Navigator>
     )
 }

@@ -13,6 +13,9 @@ export default function AuthNavigator() {
       <Stack.Screen
         name='Auth'
         component={Auth}
+        options={{
+          headerShown: false, 
+        }}
       />
 
 
