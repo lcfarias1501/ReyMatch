@@ -2,6 +2,15 @@
   "translation": {
     "Welcome": "Welcome",
     "Start Now": "Start Now",
-    "Connect Match Win": "Connect. Match. Win."
+    "Connect Match Win": "Connect. Match. Win.",
+    "Create an account": "Create an account",
+    "Loggin into your account": "Loggin into your account",
+    "Signin": "Signin",
+    "Forgot Password?": "Forgot Password?",
+    "Email Address": "Email Address",
+    "Password": "Password",
+    "Confirm Password": "Confirm Password",
+    "Select Language": "Select Language",
+    "Done": "Done"
   }
 }

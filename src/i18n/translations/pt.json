@@ -2,6 +2,15 @@
     "translation": {
         "Welcome": "Bem-Vindo",
         "Start Now": "Comece Agora",
-        "Connect Match Win": "Conecte. Combine. Vença."
+        "Connect Match Win": "Conecte. Combine. Vença.",
+        "Create an account": "Crie uma conta",
+        "Loggin into your account": "Faça login na sua conta",
+        "Signin": "Entrar",
+        "Forgot Password?": "Recuperar palavra-passe?",
+        "Email Address": "Endereço de E-mail",
+        "Password": "Palavra-passe",
+        "Confirm Password": "Confirme a palavra-passe",
+        "Select Language": "Selecionar Idioma",
+        "Done": "Concluído"
     }
 }
