@@ -7,7 +7,7 @@ import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet'
 import { changeLanguage } from '../../i18n/i18n'
 import CountryFlag from 'react-native-country-flag'
 
-
+// simulate languages
 const languages = [
     { code: 'en', name: 'English', flag: 'us' },
     { code: 'pt', name: 'Português', flag: 'pt' },
