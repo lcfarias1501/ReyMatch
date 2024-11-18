@@ -4,6 +4,7 @@ import { Icon } from 'react-native-elements'
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../../contexts/ThemeContext'
 import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet'
+import LabelInput from '../app/LabelInput'
 
 
 const AuthForm = forwardRef<BottomSheetModal>(({ }, ref) => {
@@ -30,11 +31,19 @@ const AuthForm = forwardRef<BottomSheetModal>(({ }, ref) => {
             backgroundStyle={{ backgroundColor: theme.grey_background }}
             handleIndicatorStyle={{ backgroundColor: theme.grey_background }}
         >
-            <View>
+            <View style={{ paddingHorizontal: 15 }} >
 
                 <Text style={[styles.title, { color: theme.on_background }]}>
                     {authType === 'login' ? t('Signin') : t('Signup')}
                 </Text>
+
+                <LabelInput
+                    label='Email'
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder={t('Email Address')}
+                    keyboardType='email-address'
+                />
 
             </View>
         </BottomSheetModal>
@@ -47,6 +56,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         textAlign: 'center',
+        marginBottom: 20,
     }
 
 })

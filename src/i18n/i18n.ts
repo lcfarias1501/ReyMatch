@@ -29,11 +29,13 @@ export const changeLanguage = async (lng: string) => {
 }
 
 // Function to load saved language on app start
-export const loadSavedLanguage = async () => {
+const loadSavedLanguage = async () => {
     const savedLanguage = await SecureStore.getItemAsync(LANGUAGE_KEY)
     if (savedLanguage) {
         await i18n.changeLanguage(savedLanguage)
     }
 }
+
+loadSavedLanguage()
 
 export default i18n
