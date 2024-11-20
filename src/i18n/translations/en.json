@@ -6,11 +6,18 @@
     "Create an account": "Create an account",
     "Loggin into your account": "Loggin into your account",
     "Signin": "Signin",
+    "Signup": "Signup",
     "Forgot Password?": "Forgot Password?",
     "Email Address": "Email Address",
     "Password": "Password",
     "Confirm Password": "Confirm Password",
     "Select Language": "Select Language",
-    "Done": "Done"
+    "Done": "Done",
+    "Accept privacy policy": "Accept privacy policy",
+    "Signup with": "Signup with",
+    "Signin with": "Signin with",
+    "or": "or",
+    "Already have an account?": "Already have an account?",
+    "Don't have an account?": "Don't have an account?"
   }
 }

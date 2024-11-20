@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, memo } from 'react'
-import { StyleSheet, Text, View, TextInput, Animated, TouchableOpacity, KeyboardTypeOptions } from 'react-native'
+import { StyleSheet, View, TextInput, Animated, TouchableOpacity, KeyboardTypeOptions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { useTheme } from '../../contexts/ThemeContext'
+
 
 interface Props {
     label: string
@@ -10,6 +11,8 @@ interface Props {
     placeholder: string
     secureTextEntry?: boolean
     keyboardType?: KeyboardTypeOptions
+    whenFocus?: () => void
+    whenReturnKeyboard?: () => void
 }
 
 const LabelInput = ({
@@ -18,7 +21,9 @@ const LabelInput = ({
     placeholder,
     value,
     keyboardType,
-    secureTextEntry = false
+    whenFocus,
+    whenReturnKeyboard,
+    secureTextEntry = false,
 }: Props) => {
     const { theme } = useTheme()
     const [isFocused, setIsFocused] = useState(false)
@@ -37,6 +42,7 @@ const LabelInput = ({
     }, [labelAnimation])
 
     const focusInput = useCallback(() => {
+        whenFocus && whenFocus()
         inputRef.current?.focus()
         setIsFocused(true)
         if (!value) animateLabel(1)
@@ -121,6 +127,8 @@ const LabelInput = ({
                 ]}
                 placeholderTextColor={'grey'}
                 selectionColor={theme.primary}
+                onSubmitEditing={whenReturnKeyboard}
+                textContentType="oneTimeCode"
             />
 
             {value ? (
@@ -159,9 +167,9 @@ const styles = StyleSheet.create({
     },
     label: {
         position: 'absolute',
-        left: 10,
+        left: 5,
         fontWeight: 'bold',
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
     },
     rightButton: {
         width: '15%',

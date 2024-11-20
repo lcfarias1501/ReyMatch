@@ -6,11 +6,18 @@
         "Create an account": "Crie uma conta",
         "Loggin into your account": "Faça login na sua conta",
         "Signin": "Entrar",
+        "Signup": "Registar",
         "Forgot Password?": "Recuperar palavra-passe?",
         "Email Address": "Endereço de E-mail",
         "Password": "Palavra-passe",
         "Confirm Password": "Confirme a palavra-passe",
         "Select Language": "Selecionar Idioma",
-        "Done": "Concluído"
+        "Done": "Concluído",
+        "Accept privacy policy": "Aceitar política de privacidade",
+        "Signup with": "Registar com",
+        "Signin with": "Entrar com",
+        "or": "ou",
+        "Already have an account?": "Já tem uma conta?",
+        "Don't have an account?": "Não tem uma conta?"
     }
 }
